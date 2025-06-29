@@ -1,28 +1,11 @@
-DEVELOPER INSTRUCTIONS:
-=======================
+# Njalla module for Caddy
 
-- Update module name in go.mod
-- Update dependencies to latest versions (**EXCEPT `caddy/v2` ITSELF**)
-- Update name and year in license
-- Customize configuration and Caddyfile parsing
-- Update godocs / comments (especially provider name and nuances)
-- Update README and remove this section
-
-Thank you for maintaining your Caddy plugin!
-
-_Remove this section before publishing._
-
----
-
-\<PROVIDER\> module for Caddy
-===========================
-
-This package contains a DNS provider module for [Caddy](https://github.com/caddyserver/caddy). It can be used to manage DNS records with \<PROVIDER\>.
+This package contains a DNS provider module for [Caddy](https://github.com/caddyserver/caddy). It can be used to manage DNS records for Njalla accounts.
 
 ## Caddy module name
 
 ```
-dns.providers.provider_name
+dns.providers.njalla
 ```
 
 ## Config examples
@@ -31,30 +14,18 @@ To use this module for the ACME DNS challenge, [configure the ACME issuer in you
 
 ```json
 {
-	"module": "acme",
-	"challenges": {
-		"dns": {
-			"provider": {
-				"name": "provider_name",
-				"api_token": "YOUR_PROVIDER_API_TOKEN"
-			}
-		}
-	}
+  "module": "acme",
+  "challenges": {
+    "dns": {
+      "provider": {
+        "name": "njalla",
+        "api_token": "YOUR_NJALLA_API_TOKEN"
+      }
+    }
+  }
 }
 ```
 
-or with the Caddyfile:
+## Authenticating
 
-```
-# globally
-{
-	acme_dns provider_name ...
-}
-```
-
-```
-# one site
-tls {
-	dns provider_name ...
-}
-```
+See [the associated README in the libdns package](https://github.com/libdns/njalla) for important information about credentials.
